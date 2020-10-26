@@ -1,0 +1,9 @@
+
+.example-card {
+  max-width: 400px;
+}
+
+.header-image {
+  background-image: url('/assets/Jacob.jpg');
+  background-size: cover;
+}
