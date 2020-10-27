@@ -1,2 +1,10 @@
-<mat-card>
-</mat-card>
+<div>
+  <mat-progress-bar *ngIf="isLoading" mode="query"></mat-progress-bar>
+  <div fxLayout="column"  fxLayoutGap="20px">
+    <div *ngFor="let recipe of recipes">
+      <mat-card  >
+        {{recipe.name}}
+      </mat-card>
+    </div>
+  </div>
+</div>
