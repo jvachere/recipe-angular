@@ -1,0 +1,71 @@
+.ingredient-list > div > span {
+  display: block;
+}
+
+.ingredient-pane {
+  position: fixed;
+  top: 200;
+  width: calc(1152px * .3);
+}
+
+.md-ingredient-pane {
+  position: fixed;
+  top: 200;
+  width: calc(90vw * .3);
+}
+
+.mat-display-3 {
+  color: #abb3e2;
+  font-weight: 800;
+}
+
+.text-optional {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.recipe-image {
+  position: fixed;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  top: 64px;
+  z-index: -1;
+}
+
+
+.md-recipe-image {
+  max-height: none;
+  max-width: 90vw;
+}
+
+.lg-recipe-image {
+  max-height: none;
+  max-width: 1152px;
+}
+
+.sm-recipe-image {
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: -5vw;
+}
+
+.image-overlay {
+  position: fixed;
+  height: calc(100vh - 64px);
+  width: calc((100vw - 1152px) / 2);
+  background-color: whitesmoke;
+  margin-top: -20px;
+  opacity: 0.5;
+  right: 0;
+}
+
+.lg-steps {
+  margin-top: calc((100vh - 84px) * 2 / 3);
+  padding: 15px;
+  margin-bottom: 800px;
+}
+
+.sm-recipe-page {
+  margin-top: calc((100vw * .2));
+}

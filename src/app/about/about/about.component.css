@@ -1,4 +1,9 @@
 .header-image {
-  background-image: url('/assets/Jacob.jpg');
+  background-image: url("/assets/Jacob.jpg");
   background-size: cover;
+}
+
+a {
+  color: white;
+  text-decoration: none;
 }

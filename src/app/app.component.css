@@ -6,3 +6,7 @@
 .app-content {
   width: 100%;
 }
+
+mat-toolbar {
+  padding: 15px;
+}

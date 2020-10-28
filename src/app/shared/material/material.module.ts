@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 
@@ -18,6 +19,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatIconModule,
     MatProgressBarModule,
     MatSidenavModule,
+    MatTableModule,
     MatToolbarModule,
     CommonModule
   ],
@@ -28,6 +30,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatIconModule,
     MatProgressBarModule,
     MatSidenavModule,
+    MatTableModule,
     MatToolbarModule
   ]
 })

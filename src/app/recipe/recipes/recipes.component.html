@@ -1,10 +1,23 @@
 <div>
   <mat-progress-bar *ngIf="isLoading" mode="query"></mat-progress-bar>
-  <div fxLayout="column"  fxLayoutGap="20px">
+  <div gdColumns="repeat(auto-fill, minmax(300px, 1fr))" gdGap="20px 20px">
     <div *ngFor="let recipe of recipes">
-      <mat-card  >
-        {{recipe.name}}
-      </mat-card>
+      <a [routerLink]="[recipe.id]">
+
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>{{recipe.name}}</mat-card-title>
+          </mat-card-header>
+          <img mat-card-image class="recipe-image" src="/assets/recipeImages/{{recipe.id}}.jpg">
+          <mat-card-content>
+            <section class="mat-typography">
+              <p>
+                {{recipe.description}}
+              </p>
+            </section>
+          </mat-card-content>
+        </mat-card>
+      </a>
     </div>
   </div>
 </div>

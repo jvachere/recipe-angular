@@ -1,0 +1,22 @@
+a:hover > mat-card {
+  cursor: pointer;
+  color: #3f51b5;
+  text-decoration: none;
+}
+
+a:hover{
+
+}
+
+a {
+  color: rgba(0,0,0,.87);
+  text-decoration: none;
+}
+
+.recipe-image {
+  opacity: 80%;
+}
+
+a:hover > mat-card > .recipe-image{
+  opacity: 100%;
+}

@@ -9,24 +9,23 @@ export class RecipeService {
 
   constructor() { }
 
-  getRecipe(id: number): Observable<any[]> {
-    return of(this.recipes[0]);
-  }
-
-  getRecipes(): Observable<any[]> {
-    return of(this.recipes).pipe(delay(500));
-  }
-
   recipes: any[] = [
+
     {
+      id: 2,
       name: 'Apple Crumb Pie',
-    },
-    {
-      id: 1,
-      name: 'Chocolate Chip Cookies',
       author: 'Jacob',
       createdDate: new Date('2020-10-27'),
       modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 1,
+      name: 'Chocolate Chunk Cookies',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Fudgy, coffee-y, tasty! Chocolate coffee pecan cookies.',
       recipeSteps: [
         {
           id: 1,
@@ -260,6 +259,182 @@ export class RecipeService {
           note: null
         }
       ]
-    }
+    },
+    {
+      id: 3,
+      name: 'Vegan Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Freestanding vegan apple pie with an extra crunchy walnut oat topping. Great with vegan ice cream!',
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
+    {
+      id: 2,
+      name: 'Apple Crumb Pie',
+      author: 'Jacob',
+      createdDate: new Date('2020-10-27'),
+      modifiedDate: new Date('2020-10-27'),
+      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    },
   ];
+
+  getRecipe(id: number): Observable<any[]> {
+    return of(this.recipes.filter(x => x.id === id)[0]);
+  }
+
+  getRecipes(): Observable<any[]> {
+    return of(this.recipes).pipe(delay(300));
+  }
 }

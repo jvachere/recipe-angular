@@ -1,0 +1,34 @@
+<div>
+  <img ngClass.lt-md="sm-recipe-image" ngClass.md="md-recipe-image" ngClass.gt-md="lg-recipe-image" class="recipe-image" src="/assets/recipeImages/{{recipe.id}}.jpg">
+  <!-- <div class="image-overlay"></div> -->
+  <div ngClass.lt-md="sm-recipe-page" fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutGap="10px"
+    style="margin-bottom: 100px; padding-left: 15px;">
+    <div fxFlex.gt-sm="30">
+      <div ngClass.gt-md="ingredient-pane" ngClass.md="md-ingredient-pane">
+        <h1 class="mat-display-3">{{recipe?.name}}</h1>
+        <mat-card class="ingredient-list">
+
+          <div>
+            <span *ngFor="let ingredient of recipe.recipeIngredients">
+              {{ingredient.quantity}} {{(ingredient.unit !== 'ct'? ingredient.unit :'' )}}
+              {{ingredient.name}}<span *ngIf="ingredient.isOptional" class="text-optional"> (optional)</span>
+            </span>
+          </div>
+
+        </mat-card>
+      </div>
+
+    </div>
+    <div fxFlex.gt-sm="70">
+
+      <div ngClass.gt-sm="lg-steps" fxLayout="column" fxLayoutGap="10px">
+        <mat-card *ngFor="let step of recipe.recipeSteps; index as i" fxLayout="row">
+          <div fxFlex="5">{{i+1}}</div>
+          <div fxFlex="95">{{step.text}} </div>
+        </mat-card>
+      </div>
+
+    </div>
+  </div>
+
+</div>
