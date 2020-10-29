@@ -1,6 +1,6 @@
-<div>
+<div *ngIf="recipe">
   <img ngClass.lt-md="sm-recipe-image" ngClass.gt-md="lg-recipe-image" class="recipe-image"
-    src="/assets/recipeImages/{{recipe.id}}.jpg">
+    src="/assets/recipeImages/{{recipe?.id}}.jpg">
   <div ngClass.lt-md="sm-recipe-page" fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutGap="20px"
     class="recipe-page">
     <div fxFlex.gt-sm="30">
