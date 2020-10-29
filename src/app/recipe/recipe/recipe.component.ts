@@ -7,7 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
-  styleUrls: ['./recipe.component.css']
+  styleUrls: ['./recipe.component.scss']
 })
 export class RecipeComponent extends BaseComponent implements OnInit {
   recipe = null;

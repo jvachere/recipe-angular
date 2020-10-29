@@ -1,17 +1,17 @@
 <div>
+  <h1 class="mat-display-3">Recipes</h1>
   <mat-progress-bar *ngIf="isLoading" mode="query"></mat-progress-bar>
   <div gdColumns="repeat(auto-fill, minmax(300px, 1fr))" gdGap="20px 20px">
     <div *ngFor="let recipe of recipes">
       <a [routerLink]="[recipe.id]">
-
         <mat-card>
           <mat-card-header>
             <mat-card-title>{{recipe.name}}</mat-card-title>
           </mat-card-header>
           <img mat-card-image class="recipe-image" src="/assets/recipeImages/{{recipe.id}}.jpg">
           <mat-card-content>
-            <section class="mat-typography">
-              <span>
+            <section >
+              <span class="mat-body-2">
                 {{recipe.description}}
               </span>
             </section>
