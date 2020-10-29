@@ -3,15 +3,28 @@
 }
 
 .ingredient-pane {
-  position: fixed;
   top: 200;
-  width: calc(1152px * .3);
+  width: calc(1152px * 0.3);
 }
 
 .md-ingredient-pane {
-  position: fixed;
   top: 200;
-  width: calc(90vw * .3);
+  width: calc(90vw * 0.3);
+}
+
+.fixed {
+  position: fixed;
+}
+
+.recipe-page {
+  margin-bottom: 200px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.scroll-margin {
+  position: relative;
+  margin-top: calc((100vh - 84px) * 0.6 - 232px);
 }
 
 .mat-display-3 {
@@ -25,47 +38,27 @@
 
 .recipe-image {
   position: fixed;
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 90vw;
   width: auto;
   height: auto;
   top: 64px;
   z-index: -1;
 }
 
-
-.md-recipe-image {
-  max-height: none;
-  max-width: 90vw;
-}
-
 .lg-recipe-image {
-  max-height: none;
   max-width: 1152px;
 }
 
 .sm-recipe-image {
   max-width: 100%;
-  max-height: 100%;
   margin-left: -5vw;
 }
 
-.image-overlay {
-  position: fixed;
-  height: calc(100vh - 64px);
-  width: calc((100vw - 1152px) / 2);
-  background-color: whitesmoke;
-  margin-top: -20px;
-  opacity: 0.5;
-  right: 0;
-}
-
 .lg-steps {
-  margin-top: calc((100vh - 84px) * 2 / 3);
-  padding: 15px;
-  margin-bottom: 800px;
+  margin-top: calc((100vh - 84px) * 0.6);
+  margin-bottom: 200px;
 }
 
 .sm-recipe-page {
-  margin-top: calc((100vw * .2));
+  margin-top: calc((100vw * 0.2));
 }
