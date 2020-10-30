@@ -11,14 +11,14 @@ export class RecipeService {
 
   recipes: any[] = [
 
-    {
-      id: 2,
-      name: 'Apple Crumb Pie',
-      author: 'Jacob',
-      createdDate: new Date('2020-10-27'),
-      modifiedDate: new Date('2020-10-27'),
-      description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
-    },
+    // {
+    //   id: 2,
+    //   name: 'Apple Crumb Pie',
+    //   author: 'Jacob',
+    //   createdDate: new Date('2020-10-27'),
+    //   modifiedDate: new Date('2020-10-27'),
+    //   description: 'Thick & flaky crust apple pie with apple filling soaked streusel topping.'
+    // },
     {
       id: 1,
       name: 'Chocolate Chunk Cookies',
@@ -260,14 +260,14 @@ export class RecipeService {
         }
       ]
     },
-    {
-      id: 3,
-      name: 'Vegan Apple Crumb Pie',
-      author: 'Jacob',
-      createdDate: new Date('2020-10-27'),
-      modifiedDate: new Date('2020-10-27'),
-      description: 'Freestanding vegan apple pie with an extra crunchy walnut oat topping. Great with vegan ice cream!',
-    },
+    // {
+    //   id: 3,
+    //   name: 'Vegan Apple Crumb Pie',
+    //   author: 'Jacob',
+    //   createdDate: new Date('2020-10-27'),
+    //   modifiedDate: new Date('2020-10-27'),
+    //   description: 'Freestanding vegan apple pie with an extra crunchy walnut oat topping. Great with vegan ice cream!',
+    // },
   ];
 
   getRecipe(id: number): Observable<any[]> {

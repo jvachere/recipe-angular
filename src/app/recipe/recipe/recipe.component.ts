@@ -32,6 +32,7 @@ export class RecipeComponent extends BaseComponent implements OnInit {
 
     this.onLoad(ingredientPane);
 
+
     window.addEventListener('load', () => {
       this.onLoad(ingredientPane);
     });

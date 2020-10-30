@@ -1,4 +1,4 @@
-<div *ngIf="recipe">
+<div>
   <img ngClass.lt-md="sm-recipe-image" ngClass.gt-md="lg-recipe-image" class="recipe-image"
     src="/assets/recipeImages/{{recipe?.id}}.jpg">
   <div ngClass.lt-md="sm-recipe-page" fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutGap="20px"
@@ -8,7 +8,7 @@
         <h1 class="mat-display-3">{{recipe?.name}}</h1>
         <mat-card id="ingredient-list" class="ingredient-list mat-typography">
           <div>
-            <div *ngFor="let ingredient of recipe.recipeIngredients" fxLayout="row">
+            <div *ngFor="let ingredient of recipe?.recipeIngredients" fxLayout="row">
               <div fxFlex="30">
                 {{ingredient.quantity}} {{(ingredient.unit !== 'ct'? ingredient.unit :'' )}}
               </div>
@@ -26,7 +26,7 @@
     </div>
     <div fxFlex.gt-sm="70">
       <div id="instructions" ngClass.gt-sm="lg-steps" fxLayout="column" fxLayoutGap="10px">
-        <mat-card *ngFor="let step of recipe.recipeSteps; index as i" fxLayout="row" >
+        <mat-card *ngFor="let step of recipe?.recipeSteps; index as i" fxLayout="row" >
           <div fxFlex="5" class="mat-body-2">{{i+1}}</div>
           <div fxFlex="95" class="mat-body-1">{{step.text}} </div>
         </mat-card>
