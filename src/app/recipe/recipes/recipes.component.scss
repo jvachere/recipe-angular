@@ -10,11 +10,11 @@ a {
 }
 
 .recipe-image {
-  opacity: 80%;
+  opacity: .8;
 }
 
 a:hover > mat-card > .recipe-image{
-  opacity: 100%;
+  opacity: 1;
 }
 
 .mat-display-3 {
