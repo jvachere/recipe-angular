@@ -9,12 +9,16 @@
             <mat-card-title>{{recipe.name}}</mat-card-title>
           </mat-card-header>
           <img mat-card-image class="recipe-image" src="assets/recipeImages/{{recipe?.id}}lg.jpg">
+          <div style="margin-top: -70px; margin-bottom: 30px;">
+            <mat-chip-list *ngIf="recipe.tags">
+              <mat-chip *ngFor="let tag of recipe.tags" color="primary" selected>{{tag}}</mat-chip>
+            </mat-chip-list>
+          </div>
           <mat-card-content>
-            <section >
-              <span class="mat-body-2">
-                {{recipe.description}}
-              </span>
-            </section>
+            <span class="mat-body-2">
+              {{recipe.description}}
+            </span>
+
           </mat-card-content>
         </mat-card>
       </a>

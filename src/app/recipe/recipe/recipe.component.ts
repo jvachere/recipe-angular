@@ -1,18 +1,22 @@
-import { BaseComponent } from './../../shared/base-component';
-import { RecipeService } from './../recipe.service';
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
+
+import { BaseComponent } from './../../shared/base-component';
+import { RecipeService } from './../recipe.service';
 
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.scss']
 })
-export class RecipeComponent extends BaseComponent implements OnInit {
+export class RecipeComponent extends BaseComponent implements OnInit, AfterViewInit {
   recipe = null;
   scrollThreshold = 0;
   leftPaneFixed = true;
+  titleHeight = 232;
+  smMaxWidth = 959;
+  toolbarHeight = 84;
 
   constructor(
     public recipeService: RecipeService,
@@ -21,21 +25,10 @@ export class RecipeComponent extends BaseComponent implements OnInit {
     super();
   }
 
-  ngOnInit(): void {
-    this.activatedRoute.params
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(params =>
-        this.baseSubscribe(this.recipeService.getRecipe(+params.id), (recipe) => this.recipe = recipe)
-      );
-
+  ngAfterViewInit(): void {
     const ingredientPane = document.getElementById('ingredient-pane');
 
     this.onLoad(ingredientPane);
-
-
-    window.addEventListener('load', () => {
-      this.onLoad(ingredientPane);
-    });
 
     window.addEventListener('resize', () => {
       this.onResizeEvent(ingredientPane);
@@ -46,26 +39,35 @@ export class RecipeComponent extends BaseComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {
+    this.activatedRoute.params
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(params =>
+        this.baseSubscribe(this.recipeService.getRecipe(+params.id), (recipe) => this.recipe = recipe)
+      );
+  }
+
   onLoad(ingredientPane): void {
-    if (window.innerWidth > 959) {
+    this.titleHeight = document.getElementById('heading').clientHeight + 10;
+
+    if (window.innerWidth > this.smMaxWidth) {
       ingredientPane.classList.add('fixed');
     }
   }
 
   onResizeEvent(ingredientPane): void {
-    if (window.innerWidth > 959) {
+    if (window.innerWidth > this.smMaxWidth) {
       if (this.leftPaneFixed) {
-        ingredientPane.classList.add('fixed');
-        ingredientPane.classList.remove('scroll-margin');
+        this.fixIngredientPane(ingredientPane);
       }
       else {
-        ingredientPane.classList.remove('fixed');
-        ingredientPane.classList.add('scroll-margin');
+        this.unFixIngredientPane(ingredientPane);
       }
     }
     else {
       ingredientPane.classList.remove('fixed');
       ingredientPane.classList.remove('scroll-margin');
+      ingredientPane.style['margin-top'] = null;
     }
 
     this.onScrollEvent(ingredientPane);
@@ -74,19 +76,29 @@ export class RecipeComponent extends BaseComponent implements OnInit {
   onScrollEvent(ingredientPane): void {
     if (window.innerWidth > 959) {
       if (this.leftPaneFixed) {
-        if (window.scrollY >= ((window.innerHeight - 84) * .6) - 232) {
-          ingredientPane.classList.remove('fixed');
-          ingredientPane.classList.add('scroll-margin');
+        if (window.scrollY >= ((window.innerHeight - this.toolbarHeight) * .6) - this.titleHeight) {
+          this.unFixIngredientPane(ingredientPane);
           this.leftPaneFixed = false;
         }
       }
       else {
-        if (window.scrollY < ((window.innerHeight - 84) * .6) - 232) {
-          ingredientPane.classList.remove('scroll-margin');
-          ingredientPane.classList.add('fixed');
+        if (window.scrollY < ((window.innerHeight - this.toolbarHeight) * .6) - this.titleHeight) {
+          this.fixIngredientPane(ingredientPane);
           this.leftPaneFixed = true;
         }
       }
     }
+  }
+
+  unFixIngredientPane(ingredientPane): void {
+    ingredientPane.classList.remove('fixed');
+    ingredientPane.classList.add('scroll-margin');
+    ingredientPane.style['margin-top'] = `${((window.innerHeight - this.toolbarHeight) * .6) - this.titleHeight}px`;
+  }
+
+  fixIngredientPane(ingredientPane): void {
+    ingredientPane.classList.add('fixed');
+    ingredientPane.classList.remove('scroll-margin');
+    ingredientPane.style['margin-top'] = null;
   }
 }

@@ -24,12 +24,16 @@
 
 .scroll-margin {
   position: relative;
-  margin-top: calc((100vh - 84px) * 0.6 - 232px);
+  //margin-top: calc((100vh - 84px) * 0.6 - 232px);
 }
 
 .mat-display-3 {
   color: #abb3e2;
   font-weight: 800;
+}
+
+.light-blue-background {
+  background-color: #e4e6f6;
 }
 
 .text-optional {

@@ -4,8 +4,22 @@
   <div ngClass.lt-md="sm-recipe-page" fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutGap="20px"
     class="recipe-page">
     <div fxFlex.gt-sm="30">
-      <div id="ingredient-pane" ngClass.gt-md="ingredient-pane" ngClass.md="md-ingredient-pane">
-        <h1 class="mat-display-3">{{recipe?.name}}</h1>
+      <div id="ingredient-pane" ngClass.gt-md="ingredient-pane" ngClass.md="md-ingredient-pane" fxLayout="column"
+        fxLayoutGap="10px">
+        <div id="heading">
+          <h1 class="mat-display-3" style="margin-bottom: 20px;">{{recipe?.name}}</h1>
+          <mat-chip-list *ngIf="recipe?.tags">
+            <mat-chip *ngFor="let tag of recipe.tags" color="primary" selected>{{tag}}</mat-chip>
+          </mat-chip-list>
+        </div>
+        <mat-card>
+          <h4 class="mat-h4">Yield: {{recipe?.quantity}} {{recipe?.yieldString}}</h4>
+          <h4 class="mat-h4" fxLayout="column" fxLayoutGap="5px">
+            <span *ngIf="recipe?.prepTime">Prep: {{recipe.prepTime}}</span>
+            <span *ngIf="recipe?.bakeTime">Bake: {{recipe.bakeTime}}</span>
+            <span *ngIf="recipe?.inactiveTime">Inactive: {{recipe.inactiveTime}}</span>
+          </h4>
+        </mat-card>
         <mat-card id="ingredient-list" class="ingredient-list mat-typography">
           <div>
             <div *ngFor="let ingredient of recipe?.recipeIngredients" fxLayout="row">
@@ -13,20 +27,21 @@
                 {{ingredient.quantity}} {{(ingredient.unit !== 'ct'? ingredient.unit :'' )}}
               </div>
               <div fxFlex="70">
-              {{ingredient.name}}<span *ngIf="ingredient.isOptional" class="text-optional"> (optional)</span>
-
+                {{ingredient.name}}<span *ngIf="ingredient.isOptional" class="text-optional"> (optional)</span>
               </div>
-
             </div>
           </div>
-
-
         </mat-card>
       </div>
     </div>
     <div fxFlex.gt-sm="70">
       <div id="instructions" ngClass.gt-sm="lg-steps" fxLayout="column" fxLayoutGap="10px">
-        <mat-card *ngFor="let step of recipe?.recipeSteps; index as i" fxLayout="row" >
+        <mat-card class="light-blue-background">
+          <p class="mat-body-2">
+            {{recipe?.details}}
+          </p>
+        </mat-card>
+        <mat-card *ngFor="let step of recipe?.recipeSteps; index as i" fxLayout="row">
           <div fxFlex="5" class="mat-body-2">{{i+1}}</div>
           <div fxFlex="95" class="mat-body-1">{{step.text}} </div>
         </mat-card>
