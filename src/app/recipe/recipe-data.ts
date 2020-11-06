@@ -1,7 +1,7 @@
 
 export const recipes: any[] = [
   // {
-  //   id: 2,
+  //   id: '2',
   //   name: 'Apple Crumb Pie',
   //   author: 'Jacob',
   //   createdDate: new Date('2020-10-27'),
@@ -15,7 +15,7 @@ export const recipes: any[] = [
   //   yieldString: '9" deep dish pie',
   // },
   {
-    id: 1,
+    id: '1',
     name: 'Chocolate Chunk Cookies',
     author: 'Jacob',
     createdDate: new Date('2020-10-27'),
@@ -266,7 +266,7 @@ export const recipes: any[] = [
     ]
   },
   // {
-  //   id: 3,
+  //   id: '3',
   //   name: 'Vegan Apple Crumb Pie',
   //   author: 'Jacob',
   //   createdDate: new Date('2020-10-27'),

@@ -4,6 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 
 import { BaseComponent } from './../../shared/base-component';
 import { RecipeService } from './../recipe.service';
+import { Recipe } from '../shared/recipe';
 
 @Component({
   selector: 'app-recipe',
@@ -11,7 +12,7 @@ import { RecipeService } from './../recipe.service';
   styleUrls: ['./recipe.component.scss']
 })
 export class RecipeComponent extends BaseComponent implements OnInit, AfterViewInit {
-  recipe = null;
+  recipe: Recipe = null;
   scrollThreshold = 0;
   leftPaneFixed = true;
   titleHeight = 232;
@@ -43,7 +44,7 @@ export class RecipeComponent extends BaseComponent implements OnInit, AfterViewI
     this.activatedRoute.params
       .pipe(takeUntil(this.destroy$))
       .subscribe(params =>
-        this.baseSubscribe(this.recipeService.getRecipe(+params.id), (recipe) => this.recipe = recipe)
+        this.baseSubscribe(this.recipeService.getRecipe(params.id), (recipe) => this.recipe = recipe)
       );
   }
 
@@ -74,7 +75,7 @@ export class RecipeComponent extends BaseComponent implements OnInit, AfterViewI
   }
 
   onScrollEvent(ingredientPane): void {
-    if (window.innerWidth > 959) {
+    if (window.innerWidth > this.smMaxWidth) {
       if (this.leftPaneFixed) {
         if (window.scrollY >= ((window.innerHeight - this.toolbarHeight) * .6) - this.titleHeight) {
           this.unFixIngredientPane(ingredientPane);
