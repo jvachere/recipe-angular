@@ -1,1 +1,30 @@
-<p>recipe-create works!</p>
+<div>
+  <h1 class="mat-display-3" style="margin-bottom: 20px;">Create Recipe</h1>
+
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+<div>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput value="name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Author</mat-label>
+    <input matInput formControlName="author">
+  </mat-form-field>
+</div>
+
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Details</mat-label>
+      <textarea matInput formControlName="details"></textarea>
+    </mat-form-field>
+
+    <button type="submit" [disabled]="!recipeForm.valid">Submit</button>
+  </form>
+</div>

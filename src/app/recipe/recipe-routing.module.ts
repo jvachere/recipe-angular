@@ -1,3 +1,4 @@
+import { RecipeCreateComponent } from './recipe-create/recipe-create.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -10,9 +11,13 @@ const routes: Routes = [
     component: RecipesComponent
   },
   {
+    path: 'create',
+    component: RecipeCreateComponent
+  },
+  {
     path: ':id',
     component: RecipeComponent
-  }
+  },
 ];
 
 @NgModule({

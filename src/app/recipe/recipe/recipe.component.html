@@ -7,7 +7,7 @@
       <div id="ingredient-pane" ngClass.gt-md="ingredient-pane" ngClass.md="md-ingredient-pane" fxLayout="column"
         fxLayoutGap="10px">
         <div id="heading">
-          <h1 class="mat-display-3" style="margin-bottom: 20px;">{{recipe?.name}}</h1>
+          <h1 class="mat-display-3">{{recipe?.name}}</h1>
           <mat-chip-list *ngIf="recipe?.tags">
             <mat-chip *ngFor="let tag of recipe.tags" color="primary" selected>{{tag}}</mat-chip>
           </mat-chip-list>

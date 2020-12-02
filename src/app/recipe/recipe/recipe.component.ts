@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, Inject, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 import { BaseComponent } from './../../shared/base-component';
 import { RecipeService } from './../recipe.service';
@@ -11,49 +12,53 @@ import { Recipe } from '../shared/recipe';
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.scss']
 })
-export class RecipeComponent extends BaseComponent implements OnInit, AfterViewInit {
+export class RecipeComponent extends BaseComponent implements OnInit {
   recipe: Recipe = null;
   scrollThreshold = 0;
   leftPaneFixed = true;
   titleHeight = 232;
   smMaxWidth = 959;
   toolbarHeight = 84;
+  recipeLoadedSubject = new BehaviorSubject(false);
 
   constructor(
     public recipeService: RecipeService,
-    public activatedRoute: ActivatedRoute
+    public activatedRoute: ActivatedRoute,
+    private changeDetectorRef: ChangeDetectorRef
   ) {
     super();
   }
 
-  ngAfterViewInit(): void {
-    const ingredientPane = document.getElementById('ingredient-pane');
+  onLoad(): void {
+    if (this.recipe) {
+      const ingredientPane = document.getElementById('ingredient-pane');
 
-    this.onLoad(ingredientPane);
+      this.titleHeight = document.getElementById('heading').clientHeight + 10;
 
-    window.addEventListener('resize', () => {
-      this.onResizeEvent(ingredientPane);
-    });
+      if (window.innerWidth > this.smMaxWidth) {
+        ingredientPane.classList.add('fixed');
+      }
 
-    window.addEventListener('scroll', () => {
-      this.onScrollEvent(ingredientPane);
-    });
+      window.addEventListener('resize', () => {
+        this.onResizeEvent(ingredientPane);
+      });
+
+      window.addEventListener('scroll', () => {
+        this.onScrollEvent(ingredientPane);
+      });
+    }
   }
 
   ngOnInit(): void {
     this.activatedRoute.params
       .pipe(takeUntil(this.destroy$))
       .subscribe(params =>
-        this.baseSubscribe(this.recipeService.getRecipe(params.id), (recipe) => this.recipe = recipe)
+        this.baseSubscribe(this.recipeService.getRecipe(params.id), (recipe) => {
+          this.recipe = recipe;
+          this.changeDetectorRef.detectChanges();
+          this.onLoad();
+        })
       );
-  }
-
-  onLoad(ingredientPane): void {
-    this.titleHeight = document.getElementById('heading').clientHeight + 10;
-
-    if (window.innerWidth > this.smMaxWidth) {
-      ingredientPane.classList.add('fixed');
-    }
   }
 
   onResizeEvent(ingredientPane): void {
