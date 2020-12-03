@@ -1,30 +1,95 @@
 <div>
-  <h1 class="mat-display-3" style="margin-bottom: 20px;">Create Recipe</h1>
+  <h1 class="mat-display-3" style="margin-bottom: 20px;">New Recipe</h1>
 
-  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
-<div>
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput value="name">
-  </mat-form-field>
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" fxLayout="column">
+    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+      <div fxLayout="column" fxFlex.lt-md="100" fxFlex.gt-sm="50">
+        <mat-form-field>
+          <mat-label>Recipe Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Author</mat-label>
-    <input matInput formControlName="author">
-  </mat-form-field>
-</div>
+        <mat-form-field>
+          <mat-label>Author</mat-label>
+          <input matInput formControlName="author">
+        </mat-form-field>
 
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Describe & summarize the recipe" formControlName="description"></textarea>
+        </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description"></textarea>
-    </mat-form-field>
+        <mat-form-field>
+          <mat-label>Details</mat-label>
+          <textarea matInput placeholder="Brief info for list page" formControlName="details"></textarea>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxFlex.lt-md="100" fxFlex.gt-sm="50">
+        <div fxLayoutGap="5px">
+          <mat-form-field>
+            <mat-label>Prep Time</mat-label>
+            <input matInput placeholder="35 minutes" formControlName="prepTime">
+          </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Details</mat-label>
-      <textarea matInput formControlName="details"></textarea>
-    </mat-form-field>
+          <mat-form-field>
+            <mat-label>Bake Time</mat-label>
+            <input matInput placeholder="15-28 minutes" formControlName="bakeTime">
+          </mat-form-field>
 
-    <button type="submit" [disabled]="!recipeForm.valid">Submit</button>
+          <mat-form-field>
+            <mat-label>Inactive Time</mat-label>
+            <input matInput placeholder="Up to 2 days" formControlName="inactiveTime">
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px">
+          <mat-form-field>
+            <mat-label>Quantity</mat-label>
+            <input type="number" matInput placeholder="12" formControlName="quantity">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Yield</mat-label>
+            <input matInput placeholder="2.5oz cookies" formControlName="yieldString">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="example-chip-list" fxFlexFill>
+            <mat-chip-list #chipList aria-label="Tags">
+              <mat-chip *ngFor="let tag of tags.value; index as i" (removed)="removeTag(i)">
+                {{tag}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Search Tags" [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+                (matChipInputTokenEnd)="addTag($event)">
+            </mat-chip-list>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <!-- <div>
+      <h2 color="primary" class="mat-h2">Ingredients</h2>
+      <table mat-table >
+        <tr>
+          <th mat-sort-header="name">Quantity</th>
+          <th mat-sort-header="calories">Unit</th>
+          <th mat-sort-header="fat">Name</th>
+          <th mat-sort-header="carbs">Optional</th>
+          <th mat-sort-header="protein">Notes</th>
+        </tr>
+
+        <tr *ngFor="let recipeIngredient of recipeIngredients.value">
+          <td>{{recipeIngredient.name}}</td>
+          <td>{{recipeIngredient.calories}}</td>
+          <td>{{recipeIngredient.fat}}</td>
+          <td>{{recipeIngredient.carbs}}</td>
+          <td>{{recipeIngredient.protein}}</td>
+        </tr>
+      </table>
+    </div> -->
+
+    <div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!recipeForm.valid">Create Recipe</button>
+    </div>
   </form>
 </div>
