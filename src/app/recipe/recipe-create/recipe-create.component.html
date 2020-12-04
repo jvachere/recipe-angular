@@ -1,7 +1,7 @@
 <div>
   <h1 class="mat-display-3" style="margin-bottom: 20px;">New Recipe</h1>
 
-  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" fxLayout="column">
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="20px">
     <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutGap="10px">
       <div fxLayout="column" fxFlex.lt-md="100" fxFlex.gt-sm="50">
         <mat-form-field>
@@ -55,7 +55,7 @@
         <div>
           <mat-form-field class="example-chip-list" fxFlexFill>
             <mat-chip-list #chipList aria-label="Tags">
-              <mat-chip *ngFor="let tag of tags.value; index as i" (removed)="removeTag(i)">
+              <mat-chip *ngFor="let tag of tags.value; index as i" (removed)="removeFormArrayElement(i, tags)">
                 {{tag}}
                 <mat-icon matChipRemove>cancel</mat-icon>
               </mat-chip>
@@ -67,28 +67,64 @@
         </div>
       </div>
     </div>
-    <!-- <div>
-      <h2 color="primary" class="mat-h2">Ingredients</h2>
-      <table mat-table >
-        <tr>
-          <th mat-sort-header="name">Quantity</th>
-          <th mat-sort-header="calories">Unit</th>
-          <th mat-sort-header="fat">Name</th>
-          <th mat-sort-header="carbs">Optional</th>
-          <th mat-sort-header="protein">Notes</th>
-        </tr>
-
-        <tr *ngFor="let recipeIngredient of recipeIngredients.value">
-          <td>{{recipeIngredient.name}}</td>
-          <td>{{recipeIngredient.calories}}</td>
-          <td>{{recipeIngredient.fat}}</td>
-          <td>{{recipeIngredient.carbs}}</td>
-          <td>{{recipeIngredient.protein}}</td>
-        </tr>
-      </table>
-    </div> -->
-
     <div>
+      <h2 color="primary" class="mat-h2">Ingredients</h2>
+      <div formArrayName="recipeIngredients" *ngFor="let ingredient of recipeIngredients.controls;  index as i">
+        <div formGroupName="{{i}}">
+          <mat-form-field>
+            <mat-label>Quantity</mat-label>
+            <input type="number" matInput placeholder="7" formControlName="quantity">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Unit</mat-label>
+            <input matInput placeholder="oz" formControlName="unit">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="semisweet chocolate" formControlName="name">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Note</mat-label>
+            <input matInput placeholder=">=60% cacao" formControlName="note">
+          </mat-form-field>
+          <mat-checkbox color="primary" formControlName="isOptional" class="optional-checkbox">Optional</mat-checkbox>
+          <button mat-icon-button (click)="removeFormArrayElement(i, recipeIngredients)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <button mat-mini-fab color="primary" (click)="addIngredient()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <h2 color="primary" class="mat-h2">Steps</h2>
+      <div formArrayName="recipeSteps" *ngFor="let step of recipeSteps.controls;  index as i" fxLayout="row" >
+        <div fxFex="50">
+
+        </div>
+        <div fxFlex="95">
+          <div fxFlex="5" class="mat-body-2">{{i+1}}</div>
+          <div fxFlex="95">
+            <mat-form-field fxFlexFill>
+              <mat-label>Text</mat-label>
+              <textarea matInput placeholder="List each step in order" formControlName="text"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <button fxFlex="5" mat-icon-button (click)="removeFormArrayElement(i, recipeSteps)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </div>
+
+      <button mat-mini-fab color="primary" (click)="addStep()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div>
+      <br>
+      <br>
       <button mat-raised-button color="primary" type="submit" [disabled]="!recipeForm.valid">Create Recipe</button>
     </div>
   </form>

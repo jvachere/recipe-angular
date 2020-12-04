@@ -19,10 +19,29 @@ export class RecipeCreateComponent {
     tags: this.fb.array([]),
     quantity: [''],
     yieldString: [''],
-    recipeIngredients: this.fb.array([]),
-    recipeSteps: this.fb.array([]),
+    recipeIngredients: this.fb.array([
+      this.fb.group({
+        quantity: [''],
+        unit: [''],
+        name: [''],
+        isOptional: [false],
+        note: ['']
+      })
+    ]),
+    recipeSteps: this.fb.array([
+      this.fb.group({
+        text: ['']
+      })
+    ]),
   });
+  ingredientColumns: string[] = ['quantity', 'unit', 'name', 'isOptional', 'note'];
+
+  stringify(thing){
+    return JSON.stringify(thing);
+  }
+
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+
   get tags(): FormArray {
     return this.recipeForm.get('tags') as FormArray;
   }
@@ -44,9 +63,24 @@ export class RecipeCreateComponent {
     }
   }
 
-  removeTag(index): void {
-    this.tags.removeAt(index);
+  addIngredient(): void {
+    this.recipeIngredients.push(this.fb.group({
+      quantity: [''],
+      unit: [''],
+      name: [''],
+      isOptional: [''],
+      note: ['']
+    }));
+  }
 
+  addStep(): void {
+    this.recipeSteps.push(this.fb.group({
+      text: ['']
+    }));
+  }
+
+  removeFormArrayElement(index, array): void {
+    array.removeAt(index);
   }
 
 
