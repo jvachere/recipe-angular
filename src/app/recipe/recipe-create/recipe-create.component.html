@@ -1,0 +1,131 @@
+<div>
+  <h1 class="mat-display-3" style="margin-bottom: 20px;">New Recipe</h1>
+
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="20px">
+    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutGap="10px">
+      <div fxLayout="column" fxFlex.lt-md="100" fxFlex.gt-sm="50">
+        <mat-form-field>
+          <mat-label>Recipe Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Author</mat-label>
+          <input matInput formControlName="author">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Describe & summarize the recipe" formControlName="description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Details</mat-label>
+          <textarea matInput placeholder="Brief info for list page" formControlName="details"></textarea>
+        </mat-form-field>
+      </div>
+      <div fxLayout="column" fxFlex.lt-md="100" fxFlex.gt-sm="50">
+        <div fxLayoutGap="5px">
+          <mat-form-field>
+            <mat-label>Prep Time</mat-label>
+            <input matInput placeholder="35 minutes" formControlName="prepTime">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Bake Time</mat-label>
+            <input matInput placeholder="15-28 minutes" formControlName="bakeTime">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Inactive Time</mat-label>
+            <input matInput placeholder="Up to 2 days" formControlName="inactiveTime">
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5px">
+          <mat-form-field>
+            <mat-label>Quantity</mat-label>
+            <input type="number" matInput placeholder="12" formControlName="quantity">
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Yield</mat-label>
+            <input matInput placeholder="2.5oz cookies" formControlName="yieldString">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="example-chip-list" fxFlexFill>
+            <mat-chip-list #chipList aria-label="Tags">
+              <mat-chip *ngFor="let tag of tags.value; index as i" (removed)="removeFormArrayElement(i, tags)">
+                {{tag}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="Search Tags" [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+                (matChipInputTokenEnd)="addTag($event)">
+            </mat-chip-list>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2 color="primary" class="mat-h2">Ingredients</h2>
+      <div formArrayName="recipeIngredients" *ngFor="let ingredient of recipeIngredients.controls;  index as i">
+        <div formGroupName="{{i}}">
+          <mat-form-field>
+            <mat-label>Quantity</mat-label>
+            <input type="number" matInput placeholder="7" formControlName="quantity">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Unit</mat-label>
+            <input matInput placeholder="oz" formControlName="unit">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="semisweet chocolate" formControlName="name">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Note</mat-label>
+            <input matInput placeholder=">=60% cacao" formControlName="note">
+          </mat-form-field>
+          <mat-checkbox color="primary" formControlName="isOptional" class="optional-checkbox">Optional</mat-checkbox>
+          <button mat-icon-button (click)="removeFormArrayElement(i, recipeIngredients)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <button mat-mini-fab color="primary" (click)="addIngredient()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div fxLayout="column" fxLayoutGap="10px">
+      <h2 color="primary" class="mat-h2">Steps</h2>
+      <div formArrayName="recipeSteps" *ngFor="let step of recipeSteps.controls;  index as i" fxLayout="row" >
+        <div fxFex="50">
+
+        </div>
+        <div fxFlex="95">
+          <div fxFlex="5" class="mat-body-2">{{i+1}}</div>
+          <div fxFlex="95">
+            <mat-form-field fxFlexFill>
+              <mat-label>Text</mat-label>
+              <textarea matInput placeholder="List each step in order" formControlName="text"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <button fxFlex="5" mat-icon-button (click)="removeFormArrayElement(i, recipeSteps)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </div>
+
+      <button mat-mini-fab color="primary" (click)="addStep()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div>
+      <br>
+      <br>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!recipeForm.valid">Create Recipe</button>
+    </div>
+  </form>
+</div>

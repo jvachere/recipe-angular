@@ -1,5 +1,11 @@
 <div>
-  <h1 class="mat-display-3">Recipes</h1>
+  <div fxLayout="row" fxLayoutAlign="space-between none">
+    <div class="mat-display-3">Recipes </div>
+    <a [routerLink]="['create']">
+      <button  mat-raised-button style="height: 40px;">New Recipe</button>
+    </a>
+  </div>
+
   <mat-progress-bar *ngIf="isLoading" mode="query"></mat-progress-bar>
   <div gdColumns="repeat(auto-fill, minmax(300px, 1fr))" gdGap="20px 20px">
     <div *ngFor="let recipe of recipes">

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { DurationPipe } from './pipes/duration.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -12,12 +13,16 @@ import { DurationPipe } from './pipes/duration.pipe';
   ],
   imports: [
     CommonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     DurationPipe,
     FlexLayoutModule,
+    FormsModule,
     MaterialModule,
+    ReactiveFormsModule,
   ]
 })
 export class SharedModule { }

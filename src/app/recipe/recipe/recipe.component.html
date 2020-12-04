@@ -1,5 +1,5 @@
 <div>
-  <img ngClass.lt-md="sm-recipe-image" ngClass.gt-md="lg-recipe-image" class="recipe-image"
+  <img *ngIf="recipe" ngClass.lt-md="sm-recipe-image" ngClass.gt-md="lg-recipe-image" class="recipe-image"
     src="assets/recipeImages/{{recipe?.id}}lg.jpg">
   <div ngClass.lt-md="sm-recipe-page" fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutGap="20px"
     class="recipe-page">
@@ -7,17 +7,22 @@
       <div id="ingredient-pane" ngClass.gt-md="ingredient-pane" ngClass.md="md-ingredient-pane" fxLayout="column"
         fxLayoutGap="10px">
         <div id="heading">
-          <h1 class="mat-display-3" style="margin-bottom: 20px;">{{recipe?.name}}</h1>
+          <h1 class="mat-display-3">{{recipe?.name}}</h1>
           <mat-chip-list *ngIf="recipe?.tags">
             <mat-chip *ngFor="let tag of recipe.tags" color="primary" selected>{{tag}}</mat-chip>
           </mat-chip-list>
         </div>
-        <mat-card>
-          <h4 class="mat-h4">Yield: {{recipe?.quantity}} {{recipe?.yieldString}}</h4>
-          <h4 class="mat-h4" fxLayout="column" fxLayoutGap="5px">
+        <mat-card fxHide.gt-sm class="light-blue-background">
+          <p class="mat-body-2">
+            {{recipe?.details}}
+          </p>
+        </mat-card>
+        <mat-card fxLayout.lt-md="row">
+          <h4 fxFlex.lt-md="50"  class="mat-h4">Yield: {{recipe?.quantity}} {{recipe?.yieldString}}</h4>
+          <h4 fxFlex.lt-md="50" class="mat-h4" fxLayout="column" fxLayoutGap="5px">
             <span *ngIf="recipe?.prepTime">Prep: {{recipe.prepTime}}</span>
             <span *ngIf="recipe?.bakeTime">Bake: {{recipe.bakeTime}}</span>
-            <span *ngIf="recipe?.inactiveTime">Inactive: {{recipe.inactiveTime}}</span>
+            <span *ngIf="recipe?.inactiveTime">Inactive Time: {{recipe.inactiveTime}}</span>
           </h4>
         </mat-card>
         <mat-card id="ingredient-list" class="ingredient-list mat-typography">
@@ -36,7 +41,7 @@
     </div>
     <div fxFlex.gt-sm="70">
       <div id="instructions" ngClass.gt-sm="lg-steps" fxLayout="column" fxLayoutGap="10px">
-        <mat-card class="light-blue-background">
+        <mat-card fxHide.lt-md class="light-blue-background">
           <p class="mat-body-2">
             {{recipe?.details}}
           </p>

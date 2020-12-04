@@ -1,3 +1,4 @@
+import { Recipe } from './../shared/recipe';
 import { Component, OnInit } from '@angular/core';
 
 import { BaseComponent } from './../../shared/base-component';
@@ -9,7 +10,7 @@ import { RecipeService } from './../recipe.service';
   styleUrls: ['./recipes.component.scss']
 })
 export class RecipesComponent extends BaseComponent implements OnInit {
-  recipes: any[] = [];
+  recipes: Recipe[] = [];
 
   constructor(private recipeService: RecipeService) {
     super();
